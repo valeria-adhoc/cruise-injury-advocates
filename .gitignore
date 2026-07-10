@@ -33,3 +33,6 @@ assets/*
 !assets/blog-deadlines.jpg
 !assets/blog-after-injury.jpg
 !assets/blog-excursions.jpg
+
+# WebP versions of the served images
+!assets/*.webp
