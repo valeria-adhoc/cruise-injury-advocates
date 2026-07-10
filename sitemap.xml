@@ -252,4 +252,7 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://cruiseinjuryadvocates.com/es/service-dohsa.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cruiseinjuryadvocates.com/service-dohsa.html"/>
   </url>
+  <url>
+    <loc>https://cruiseinjuryadvocates.com/privacy.html</loc>
+  </url>
 </urlset>

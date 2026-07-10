@@ -498,3 +498,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 :focus-visible { border-radius: 0; }
 .skip-link { border-radius: 0; }
 .member-photo, .member-photo .ph, .member-photo img, .profile-photo { border-radius: 0; }
+
+.form-consent { font-size: .78rem; color: var(--muted-2); margin: var(--s3) 0 0; line-height: 1.5; }
+.form-consent a { text-decoration: underline; }
