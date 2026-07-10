@@ -136,9 +136,17 @@
   if (y) y.textContent = String(new Date().getFullYear());
 
   /* ---- 8. Intake forms (any number per page) ----
-     No backend. To go live: set each form's action to your GHL/webhook and
-     remove preventDefault, OR fetch() to data-ghl-endpoint inside submitToBackend(). */
-  function submitToBackend() { return new Promise(function (res) { setTimeout(res, 600); }); } // [INTEGRATION POINT]
+     Submits JSON {name,email,phone,message,...} to the GHL inbound webhook. */
+  var GHL_ENDPOINT = "https://services.leadconnectorhq.com/hooks/PVi5f4GgOSSOMS8sL7v6/webhook-trigger/Nx9GnSXumGH3bMft0eLA";
+  function submitToBackend(form) {
+    var ep = form.getAttribute("data-ghl-endpoint") || "";
+    var url = ep.indexOf("http") === 0 ? ep : GHL_ENDPOINT;
+    function val(n) { var el = form.querySelector('[name="' + n + '"]'); return el ? String(el.value).trim() : ""; }
+    var payload = { name: val("name"), email: val("email"), phone: val("phone"), message: val("message"),
+                    source: "website", page: location.pathname, language: document.documentElement.lang || "en" };
+    return fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r; });
+  }
   function setupForm(form) {
     var statusEl = form.querySelector(".form-status");
     var fields = Array.prototype.slice.call(form.querySelectorAll("input, textarea, select"));
@@ -160,10 +168,13 @@
       var btn = form.querySelector("button[type=submit]");
       if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = ES ? "Enviando…" : "Sending…"; }
       showStatus("");
-      submitToBackend().then(function () {
+      submitToBackend(form).then(function () {
         form.reset();
         if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || (ES ? "Enviar" : "Submit"); }
-        showStatus(ES ? "Gracias, nos pondremos en contacto con usted en breve. (Demostración: aún no está conectado a un servidor.)" : "Thank you, we will be in touch shortly. (Demo: not yet connected to a backend.)", "ok");
+        showStatus(ES ? "Gracias, nos pondremos en contacto con usted en breve." : "Thank you, we will be in touch shortly.", "ok");
+      }).catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || (ES ? "Enviar" : "Submit"); }
+        showStatus(ES ? "No pudimos enviar su mensaje. Llámenos al (786) 814-6427." : "Sorry, we couldn't send your message. Please call us at (786) 814-6427.", "err");
       });
     });
   }
