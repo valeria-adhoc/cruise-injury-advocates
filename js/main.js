@@ -169,9 +169,7 @@
       if (btn) { btn.disabled = true; btn.dataset.label = btn.textContent; btn.textContent = ES ? "Enviando…" : "Sending…"; }
       showStatus("");
       submitToBackend(form).then(function () {
-        form.reset();
-        if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || (ES ? "Enviar" : "Submit"); }
-        showStatus(ES ? "Gracias, nos pondremos en contacto con usted en breve." : "Thank you, we will be in touch shortly.", "ok");
+        window.location.assign("thank-you.html");
       }).catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = btn.dataset.label || (ES ? "Enviar" : "Submit"); }
         showStatus(ES ? "No pudimos enviar su mensaje. Llámenos al (786) 814-6427." : "Sorry, we couldn't send your message. Please call us at (786) 814-6427.", "err");
