@@ -191,17 +191,4 @@
     });
   });
 
-  /* ---- 10. Chat FAB ---- */
-  /* ---- Reviews marquee: duplicate cards for a seamless loop ---- */
-  var rtrack = document.querySelector(".reviews-track");
-  if (rtrack) {
-    Array.prototype.slice.call(rtrack.children).forEach(function (c) {
-      var d = c.cloneNode(true);
-      d.setAttribute("aria-hidden", "true");
-      rtrack.appendChild(d);
-    });
-  }
-
-  var fab = document.getElementById("chatFab");
-  if (fab) fab.addEventListener("click", function () { window.alert("[Placeholder] Connect your GHL / live-chat widget here."); });
 })();

@@ -411,8 +411,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer-legal { font-size: .78rem; color: rgba(255,255,255,.45); max-width: 92ch; padding-bottom: var(--s6); }
 
 /* ---------- Chat FAB ---------- */
-.chat-fab { position: fixed; right: 22px; bottom: 22px; z-index: 90; width: 56px; height: 56px; border-radius: 50%; border: 0; cursor: pointer; background: var(--navy); color: #fff; display: grid; place-items: center; box-shadow: 0 14px 34px -12px rgba(27,39,64,.7); transition: transform .2s var(--ease); }
-.chat-fab:hover { transform: translateY(-3px) scale(1.04); background: var(--navy-2); }
 
 /* ---------- Feature cards (services page) ---------- */
 .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: var(--s5); }
@@ -492,7 +490,7 @@ ul { margin: 0; padding: 0; list-style: none; }
    ============================================================ */
 :root { --radius: 0; --radius-sm: 0; }
 .btn, .post-tag, .role-pill, .group-band, .map-facade span,
-.scard-icon, .feature-icon, .card-icon, .chat-fab, .footer-social a,
+.scard-icon, .feature-icon, .card-icon, .footer-social a,
 .video-play, .hc-list li::before, .acc-icon::before, .acc-icon::after,
 .nav-toggle span { border-radius: 0; }
 :focus-visible { border-radius: 0; }
